@@ -1,0 +1,63 @@
+.buttons button {
+    position: relative;
+    color: #303C6C;
+    background-color: #B4DFE5;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-size: 1.7rem;
+    padding: 0.7rem 2rem;
+    border: 4px solid #303C6C;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.buttons i, .buttons .filterIcon {
+    font-size: 1rem;
+    background-color: #B4DFE5;
+    padding: 0.5rem;
+    border-radius: 50%;
+    -webkit-border-radius: 4px solid #303C6C;
+    -moz-border-radius: 4px solid #303C6C;
+    -ms-border-radius: 4px solid #303C6C;
+    -o-border-radius: 4px solid #303C6C;
+    border-bottom: 4px solid #303C6C;
+    border-right: 4px solid #303C6C;
+}
+
+.buttons .fa-plus {
+    position: absolute;
+    top: 65%;
+    right: -10%;
+}
+
+.buttons .fa-arrow-up-9-1 {
+    position: absolute;
+    top : 65%;
+    right: -16%;
+}
+
+.buttons .filterIcon {
+    position: absolute;
+    top: 65%;
+    right: -15%;
+}
+
+
+.buttons .gridStyle {
+    color: #303C6C;
+    background-color: #B4DFE5;
+    border: none;
+    outline: none;
+    padding: 0.2rem;
+    border: 4px solid #303C6C;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    cursor: pointer;
+}
