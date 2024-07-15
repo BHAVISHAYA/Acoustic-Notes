@@ -1,21 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import "../styles/Buttons.css";
 import WindowIcon from '@mui/icons-material/Window';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { InputDialog } from './InputDialog';
+import { Notes } from './Notes';
 
 export const Buttons = () => {
 
     const [Icon, setIcon] = useState(WindowIcon);
     const [showDialog, setShowDialog] = useState(false);
+    const [gridView, setGridView] = useState(true);
+    const [random, setRandom] = useState(true);
+
+    useEffect(() => {
+        console.log("Jai Siya RAM");
+    }, [random]);
+
 
     const changeIcon = () => {
         if(Icon === WindowIcon) {
             setIcon(ViewListIcon);
+            setGridView(false);
         }
         else {
             setIcon(WindowIcon);
+            setGridView(true);
         }
     }
 
@@ -55,7 +65,8 @@ export const Buttons = () => {
                     </div>
                 </div>                
             </div>
-            {showDialog && <InputDialog closeDialog={closeDialog} /> }
-        </>
+            {showDialog && <InputDialog closeDialog={closeDialog} random={random} setRandom={setRandom}   /> }
+            <Notes gridView={gridView} />
+        </>     
     )
 }

@@ -1,6 +1,6 @@
 .header {
-    background-color: #F4976C;
-    color: #303C6C;
+    background-color: var(--color_2);
+    color: var(--color_3);
 }
 
 .header h1 {

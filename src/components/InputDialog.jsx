@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import "../styles/InputDialog.css";
 import { AddNewCategory } from './AddNewCategory';
-import { CategoryRounded, Description, NorthEastSharp, SettingsRemoteSharp, UpdateSharp } from '@mui/icons-material';
+
 
 export const InputDialog = (props) => {
     
@@ -17,20 +17,18 @@ export const InputDialog = (props) => {
     else 
     getAllNotes = [];
 
-    const { closeDialog } = props;
+    const { closeDialog, random, setRandom } = props;
 
     const styleInputs = {
         fontWeight: "700",
         fontSize: "1.1rem",
-        color: "#303C6C",
+        color: "var(--color_3)",
     }
 
     const [noteArray, setNoteArray] = useState(getAllNotes);
     const [showBox, setShowBox] = useState(false);
     const [categoryArray, setCategoryArray] = useState(category);
 
-    console.log(`Note Array Length = ${noteArray.length}`);
-    console.log(`Category Array Length = ${categoryArray.length}`);
 
     const [selectBoxValue, setSelectBoxValue] = useState("");
     const [titleValue, setTitleValue] = useState("");
@@ -66,7 +64,7 @@ export const InputDialog = (props) => {
         }
         else {
             let updatedNote = {
-                id : new Date().getTime().toString(), 
+                id : new Date().getTime(), 
                 category : selectBoxValue, 
                 title : titleValue, 
                 description : descValue, 
@@ -75,6 +73,7 @@ export const InputDialog = (props) => {
             noteArray.push(updatedNote);
             localStorage.setItem("allNotes", JSON.stringify([...noteArray]));
             closeDialog();
+            setRandom(!random);
         }
     }
 

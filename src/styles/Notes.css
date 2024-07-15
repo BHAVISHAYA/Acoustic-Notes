@@ -1,0 +1,43 @@
+.notes .note {
+    border: 5px solid var(--color_2);
+    color: var(--color_5);
+    background-color: var(--color_3);
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.notes span {
+    color: var(--color_1);
+    font-weight: 700;
+}
+
+.notes bold {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.notes button {
+    border: none;
+    background-color: var(--color_2);
+    color: var(--color_3);
+    padding: 0.5rem 1rem;
+    margin: 0.4rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.notes button:hover {
+    background-color: var(--color_3);
+    color: var(--color_2);
+    border : 3px solid var(--color_2)
+}

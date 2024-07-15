@@ -17,3 +17,12 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
 }
+
+:root {
+    --color_1 : #FBE8A6;
+    --color_2 : #F4976C;
+    --color_3 : #303C6C;
+    --color_4 : #B4DFE5;
+    --color_5 : #D2FDFF;
+    --blur-background : rgb(255, 228, 196, 0.7);
+}
