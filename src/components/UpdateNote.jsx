@@ -54,7 +54,7 @@ export const UpdateNote = (props) => {
         }
     }
 
-    const showNotes = () => {
+    const updateASpecificNote = () => {
         if(cateValue === "Choose Category" || titValue === "" || desValue === "" || priValue === "") {
             alert("Please fill all the fields");
         }
@@ -104,7 +104,7 @@ export const UpdateNote = (props) => {
                         <input style={styleInputs} className='form-control mb-4' type="number" min={1} placeholder='Set Priority' name='Priority' value={priValue} onChange={handleInput} />
                         
                         {/* Update Note Button */}
-                        <button onClick={showNotes}> Update Note </button>
+                        <button onClick={updateASpecificNote}> Update Note </button>
                     </div>
                 </div>
             </div>

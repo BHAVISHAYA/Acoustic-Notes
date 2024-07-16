@@ -5,6 +5,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { InputDialog } from './InputDialog';
 import { Notes } from './Notes';
+import { LocalPostOffice } from '@mui/icons-material';
 
 export const Buttons = () => {
 
@@ -13,10 +14,7 @@ export const Buttons = () => {
     const [gridView, setGridView] = useState(true);
     const [random, setRandom] = useState(true);
 
-    useEffect(() => {
-        console.log("Jai Shree Ram");
-    }, [random]);
-
+    useEffect(() => {}, [random]);
 
     const changeIcon = () => {
         if(Icon === WindowIcon) {
@@ -35,6 +33,19 @@ export const Buttons = () => {
     const closeDialog = () => {
         setShowDialog(false);
     }
+
+
+    const sortAccToPriority = () => {
+        //* Getting original note Array from local storage 
+        let getAllNotes = localStorage.getItem("allNotes");
+        if(getAllNotes !== null)
+        getAllNotes = JSON.parse(getAllNotes);
+        else 
+        getAllNotes = [];
+        getAllNotes = [...getAllNotes].sort((a, b) => a.priority - b.priority);
+        localStorage.setItem("allNotes", JSON.stringify(getAllNotes));
+        setRandom(!random);
+    }
      
     return (
         <>
@@ -47,7 +58,7 @@ export const Buttons = () => {
                         </button>
                     </div>
                     <div className="col-lg-3 col-sm-6 sort my-2">
-                        <button>
+                        <button onClick={sortAccToPriority}>
                             Sort Priority
                             <i className="fa-solid fa-arrow-up-9-1"></i>
                         </button>

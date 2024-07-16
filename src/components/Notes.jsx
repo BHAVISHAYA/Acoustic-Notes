@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import "../styles/Notes.css";
 import { UpdateNote } from './UpdateNote';
 
 export const Notes = (props) => {
 
-    const { gridView } = props;
-
-    const [notes, setNotes] = useState([]);
-    const [showUpdateDialog, setShowUpdateDialog] = useState(false);
-    const [passId, setPassId] = useState(0);
-    const [currCateValue, setCurrCateValue] = useState("");
-    const [currTitValue, setCurrTitValue] = useState("");
-    const [currDesValue, setCurrDesValue] = useState("");
-    const [currPriValue, setCurrPriValue] = useState("");
+    const { gridView, passArray, setPassArray, newArr } = props;
 
     let category = localStorage.getItem("category");
     if(category !== null)
@@ -20,19 +12,30 @@ export const Notes = (props) => {
     else 
     category = [];
 
+    const [showUpdateDialog, setShowUpdateDialog] = useState(false);
+    const [passId, setPassId] = useState(0);
+    const [currCateValue, setCurrCateValue] = useState("");
+    const [currTitValue, setCurrTitValue] = useState("");
+    const [currDesValue, setCurrDesValue] = useState("");
+    const [currPriValue, setCurrPriValue] = useState("");
+
     const [cateArr, setCateArr] = useState(category);
      
-    let  myNotes = [];
+    let myNotes = [];
     useEffect(() => {
         const callMe = () => {
             myNotes = localStorage.getItem("allNotes");
             if(myNotes !== null) { 
                 myNotes = JSON.parse(myNotes);
-                setNotes(myNotes);
+                setNotes(myNotes); 
             }
         }
         callMe();
     }, [myNotes]);
+
+    const [notes, setNotes] = useState(myNotes);
+
+
 
 
     //todo -> Handle Favorite and Unfavorite Thing => 
@@ -83,7 +86,6 @@ export const Notes = (props) => {
         openUpdateDialog();
     }
 
-
     return (
         <>
             <div className="container-fluid notes dosis">
@@ -96,7 +98,7 @@ export const Notes = (props) => {
                                     <h1> <span> ID :</span> {currEle.id} </h1>
                                     
                                     {/* Category */}
-                                    <h1 className='py-3'> <span>Category : </span> {currEle.category} <span><i className={currEle.favorite === true && "fa-solid fa-star mx-1"}></i></span></h1>
+                                    <h1 className='py-3'> <span>Category : </span> {currEle.category.toUpperCase()} <span><i className={currEle.favorite === true && "fa-solid fa-star mx-1"}></i></span></h1>
                                     
                                     {/* Title */}
                                     <h2 className='py-3'> <span>Title : </span> {currEle.title} </h2>
