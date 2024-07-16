@@ -1,12 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import "../styles/Notes.css";
-import { InputDialog } from '../components/InputDialog.jsx';
+import { UpdateNote } from './UpdateNote';
 
 export const Notes = (props) => {
 
-    const {gridView, openDialog, closeDialog, random, setRandom } = props;
+    const { gridView } = props;
+
     const [notes, setNotes] = useState([]);
-    
+    const [showUpdateDialog, setShowUpdateDialog] = useState(false);
+    const [passId, setPassId] = useState(0);
+    const [currCateValue, setCurrCateValue] = useState("");
+    const [currTitValue, setCurrTitValue] = useState("");
+    const [currDesValue, setCurrDesValue] = useState("");
+    const [currPriValue, setCurrPriValue] = useState("");
+
+    let category = localStorage.getItem("category");
+    if(category !== null)
+    category = JSON.parse(category);
+    else 
+    category = [];
+
+    const [cateArr, setCateArr] = useState(category);
+     
     let  myNotes = [];
     useEffect(() => {
         const callMe = () => {
@@ -45,6 +60,14 @@ export const Notes = (props) => {
         setNotes(DuplicateArray);
     }
 
+    const openUpdateDialog = () => {
+        setShowUpdateDialog(true);
+    }
+
+    const closeUpdateDialog = () => {
+        setShowUpdateDialog(false);
+    }
+
     //todo -> Handle Update Note =>
     const updateThisNote = (currNoteId) => {
         console.log(currNoteId);
@@ -52,15 +75,21 @@ export const Notes = (props) => {
             return (currElem.id === currNoteId);
         })
         console.log(newEditItem);
-        openDialog();
+        setPassId(currNoteId);
+        setCurrCateValue(newEditItem.category);
+        setCurrTitValue(newEditItem.title);
+        setCurrDesValue(newEditItem.description);
+        setCurrPriValue(newEditItem.priority);
+        openUpdateDialog();
     }
+
 
     return (
         <>
             <div className="container-fluid notes dosis">
                 <div className="row justify-content-around">
                     {
-                        notes.map((currEle, index) => {
+                        notes.length !== 0 && notes.map((currEle) => {
                             return <>
                                 <div className={(gridView === true ? "col-md-3 col-10 note p-4 mx-2 my-4" : "col-10 col-md-11 note p-4 my-4")} key={currEle.id} >                                
                                     {/* ID */}
@@ -95,6 +124,19 @@ export const Notes = (props) => {
                     }
                 </div>
             </div>  
+            {
+                showUpdateDialog && 
+                <UpdateNote 
+                    closeUpdateDialog={closeUpdateDialog} 
+                    cateArr={cateArr} 
+                    setCateArr={setCateArr} 
+                    passId={passId} 
+                    currCateValue={currCateValue}
+                    currTitValue={currTitValue}
+                    currDesValue={currDesValue}
+                    currPriValue={currPriValue}
+                />
+            }
         </>
     )
 }

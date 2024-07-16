@@ -14,7 +14,7 @@ export const Buttons = () => {
     const [random, setRandom] = useState(true);
 
     useEffect(() => {
-        console.log("Jai Siya RAM");
+        console.log("Jai Shree Ram");
     }, [random]);
 
 
@@ -69,14 +69,10 @@ export const Buttons = () => {
                 showDialog && <InputDialog 
                 closeDialog={closeDialog} 
                 random={random} 
-                setRandom={setRandom} 
-                cValue={"cValue"} 
-                tValue={"tValue"} 
-                dValue={"dValue"}
-                pValue={"pValue"}
-                showEditNote={false}  /> 
+                setRandom={setRandom}  
+            /> 
             }
-            <Notes gridView={gridView} openDialog={openDialog} closeDialog={closeDialog} random={random} setRandom={setRandom} />
+            <Notes gridView={gridView} />
         </>     
     )
 }
