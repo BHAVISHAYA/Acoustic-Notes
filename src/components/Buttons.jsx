@@ -48,7 +48,7 @@ export const Buttons = () => {
                     </div>
                     <div className="col-lg-3 col-sm-6 sort my-2">
                         <button>
-                            Sort
+                            Sort Priority
                             <i className="fa-solid fa-arrow-up-9-1"></i>
                         </button>
                     </div>
@@ -65,8 +65,18 @@ export const Buttons = () => {
                     </div>
                 </div>                
             </div>
-            {showDialog && <InputDialog closeDialog={closeDialog} random={random} setRandom={setRandom}   /> }
-            <Notes gridView={gridView} />
+            {
+                showDialog && <InputDialog 
+                closeDialog={closeDialog} 
+                random={random} 
+                setRandom={setRandom} 
+                cValue={"cValue"} 
+                tValue={"tValue"} 
+                dValue={"dValue"}
+                pValue={"pValue"}
+                showEditNote={false}  /> 
+            }
+            <Notes gridView={gridView} openDialog={openDialog} closeDialog={closeDialog} random={random} setRandom={setRandom} />
         </>     
     )
 }

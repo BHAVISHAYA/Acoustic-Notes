@@ -22,10 +22,10 @@ export const AddNewCategory = (props) => {
         else {
             if(categoryArray.includes(newCategory.toLowerCase()) === true) alert("Category already exist");
             else {
+                setSelectBoxValue(newCategory);
                 setCategoryArray([...categoryArray, newCategory.toLowerCase()]);
                 localStorage.setItem("category", JSON.stringify([...categoryArray, newCategory.toLowerCase()]));
                 setShowBox(false);
-                setSelectBoxValue(newCategory);
             }
         }
     }

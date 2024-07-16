@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import "../styles/InputDialog.css";
-import { AddNewCategory } from './AddNewCategory';
-
+import { InputDialogData } from './InputDialogData';
 
 export const InputDialog = (props) => {
     
@@ -19,17 +18,9 @@ export const InputDialog = (props) => {
 
     const { closeDialog, random, setRandom } = props;
 
-    const styleInputs = {
-        fontWeight: "700",
-        fontSize: "1.1rem",
-        color: "var(--color_3)",
-    }
-
     const [noteArray, setNoteArray] = useState(getAllNotes);
     const [showBox, setShowBox] = useState(false);
     const [categoryArray, setCategoryArray] = useState(category);
-
-
     const [selectBoxValue, setSelectBoxValue] = useState("");
     const [titleValue, setTitleValue] = useState("");
     const [descValue, setDescValue] = useState("");
@@ -69,6 +60,7 @@ export const InputDialog = (props) => {
                 title : titleValue, 
                 description : descValue, 
                 priority : priorityValue,
+                favorite : false,
             }
             noteArray.push(updatedNote);
             localStorage.setItem("allNotes", JSON.stringify([...noteArray]));
@@ -78,39 +70,21 @@ export const InputDialog = (props) => {
     }
 
     return (
-        <>
-            <div className="container-fluid dialog-wrapper"></div>
-            <div className="container-fluid inputDialog">
-                <div className="row text-center justify-content-center align-items-center">
-                    <div className="col-md-6 col-sm-8 col-10 mx-sm-0 mx-4 py-4 px-md-5 px-sm-3 px-3">
-                        <button className='mb-4 d-flex py-1 px-3' onClick={closeDialog}>X</button>
-                        
-                        {/* Select Category */}
-                        <select style={styleInputs} className='form-select' value={selectBoxValue} onChange={handleInput} name="Category">
-                            <option value="Choose Category">Choose Category</option>
-                            <option value="Add Category">Add Category</option>
-                            {
-                                categoryArray.map((currELe, index) => (
-                                    <option value={currELe} key={index} id={index}> {currELe.toUpperCase()} </option>
-                                ))
-                            }
-                        </select>
-                        { showBox && <AddNewCategory categoryArray={categoryArray} setCategoryArray={setCategoryArray} setShowBox={setShowBox} setSelectBoxValue={setSelectBoxValue} /> }
-                        
-                        {/* Add Title */}
-                        <input style={styleInputs} className='form-control my-4' type="text" placeholder='Add Title' value={titleValue} onChange={handleInput} name='Title' />
-                        
-                        {/* Add Description */}
-                        <textarea style={styleInputs} className='form-control mb-4' placeholder='Add Description' rows="5" cols="50" value={descValue} onChange={handleInput} name='Description' />
-                        
-                        {/* Add Priority */}
-                        <input style={styleInputs} className='form-control mb-4' type="number" min={1} placeholder='Set Priority' value={priorityValue} onChange={handleInput} name='Priority' />
-                        
-                        {/* Add Note Button */}
-                        <button onClick={showNotes}>Add Task</button>
-                    </div>
-                </div>
-            </div>
+        <>  
+            <InputDialogData 
+                closeDialog={closeDialog}
+                selectBoxValue={selectBoxValue}
+                titleValue={titleValue}
+                descValue={descValue}
+                priorityValue={priorityValue}
+                handleInput={handleInput}
+                categoryArray={categoryArray}
+                setCategoryArray={setCategoryArray}
+                showBox={showBox}
+                setShowBox={setShowBox}
+                setSelectBoxValue={setSelectBoxValue}
+                showNotes={showNotes}
+            />
         </>
     )
 }
