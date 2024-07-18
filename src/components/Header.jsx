@@ -21,7 +21,7 @@ export const Header = () => {
                         <h1 className='px-1 px-md-3'>Acoustic Notes</h1>
                     </div>
                     <div className="col-6 d-flex justify-content-end align-items-center">
-                        <h2 className="mx-sm-3"> {showTime} </h2>
+                        <h2 className="mx-md-3 mx-2 mt-2"> {showTime} </h2>
                         <i className="fa-solid fa-palette px-1 px-md-3"></i>
                     </div>
                 </div>
