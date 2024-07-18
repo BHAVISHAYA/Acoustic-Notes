@@ -5,7 +5,6 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { InputDialog } from './InputDialog';
 import { Notes } from './Notes';
-import { LocalPostOffice } from '@mui/icons-material';
 
 export const Buttons = () => {
 
@@ -66,7 +65,7 @@ export const Buttons = () => {
                     <div className="col-lg-3 col-sm-6 my-2">
                         <button>
                             Filter
-                            <FilterListIcon className='filterIcon' style={{fontSize : "2.5rem", padding : "0.3rem"}} />
+                            <FilterListIcon className='filterIcon' style={{fontSize : "2.3rem", padding : "0.3rem"}} />
                         </button>
                     </div>
                     <div className="grid col-lg-3 col-sm-6 my-2 d-flex justify-content-center align-items-center">

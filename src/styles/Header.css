@@ -8,6 +8,10 @@
     font-weight: 700;
 }
 
+.header h2 {
+    font-weight: 700;
+}
+
 .header i {
     font-size: 3rem;
     cursor: pointer;
@@ -20,6 +24,9 @@
     .header i {
         font-size: 2rem;
     }
+    .header h2 {
+        font-size: 1.3rem;
+    }
 }
 
 @media screen and (max-width : 270px) {
@@ -28,5 +35,8 @@
     }
     .header i {
         font-size: 1.5rem;
+    }
+    .header h2 {
+        font-size: 1rem;
     }
 }
