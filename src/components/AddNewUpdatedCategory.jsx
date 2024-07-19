@@ -8,7 +8,7 @@ export const AddNewUpdatedCategory = (props) => {
     const styleInputs = {
         fontWeight: "700",
         fontSize: "1.1rem",
-        color: "var(--color_3)",
+        color: "var(--color_2)",
     }
 
     const [newCategory, setNewCategory] = useState("");

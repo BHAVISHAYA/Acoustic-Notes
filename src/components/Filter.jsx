@@ -10,7 +10,7 @@ export const Filter = (props) => {
     const styleInputs = {
         fontWeight: "700",
         fontSize: "1.1rem",
-        color: "var(--color_3)",
+        color: "var(--color_2)",
     }
 
     const [filterValue, setFilterValue] = useState("Select Filter Type");
