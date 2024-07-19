@@ -16,12 +16,12 @@ export const InputDialog = (props) => {
     else 
     getAllNotes = [];
 
-    const { closeDialog, random, setRandom } = props;
+    const { closeDialog, random, setRandom, finalNotes, setFinalNotes } = props;
 
     const [noteArray, setNoteArray] = useState(getAllNotes);
     const [showBox, setShowBox] = useState(false);
     const [categoryArray, setCategoryArray] = useState(category);
-    const [selectBoxValue, setSelectBoxValue] = useState("");
+    const [selectBoxValue, setSelectBoxValue] = useState("Choose Category");
     const [titleValue, setTitleValue] = useState("");
     const [descValue, setDescValue] = useState("");
     const [priorityValue, setPriorityValue] = useState("");
@@ -65,6 +65,9 @@ export const InputDialog = (props) => {
             noteArray.push(updatedNote);
             localStorage.setItem("allNotes", JSON.stringify([...noteArray]));
             closeDialog();
+            let getArr = localStorage.getItem("allNotes");
+            getArr = JSON.parse(getArr);
+            setFinalNotes(getArr);
             setRandom(!random);
         }
     }

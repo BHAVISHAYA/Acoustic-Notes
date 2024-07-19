@@ -4,7 +4,7 @@ import { UpdateNote } from './UpdateNote';
 
 export const Notes = (props) => {
 
-    const { gridView, passArray, setPassArray, newArr } = props;
+    const { gridView, finalNotes, setFinalNotes } = props;
 
     let category = localStorage.getItem("category");
     if(category !== null)
@@ -20,28 +20,28 @@ export const Notes = (props) => {
     const [currPriValue, setCurrPriValue] = useState("");
 
     const [cateArr, setCateArr] = useState(category);
-     
-    let myNotes = [];
+    const [notes, setNotes] = useState(finalNotes);
+
     useEffect(() => {
         const callMe = () => {
-            myNotes = localStorage.getItem("allNotes");
-            if(myNotes !== null) { 
-                myNotes = JSON.parse(myNotes);
-                setNotes(myNotes); 
-            }
+            console.log(finalNotes);
+            setNotes(finalNotes);
         }
         callMe();
-    }, [myNotes]);
-
-    const [notes, setNotes] = useState(myNotes);
+    }, [notes, finalNotes]);
 
 
 
 
     //todo -> Handle Favorite and Unfavorite Thing => 
-    let DuplicateArray = [];
     const addToFavotite = (id) => {
-        DuplicateArray = notes.map((currELe) => {
+        //* Getting all notes from local Storage 
+        let getAllNotes = localStorage.getItem("allNotes");
+        if(getAllNotes !== null)
+        getAllNotes = JSON.parse(getAllNotes);
+        else 
+        getAllNotes = [];
+        let arr = getAllNotes.map((currELe) => {
             if(id === currELe.id) {
                 if(currELe.favorite === true)
                 currELe.favorite = false;
@@ -50,17 +50,39 @@ export const Notes = (props) => {
             }
             return currELe;
         })
-        localStorage.setItem('allNotes', JSON.stringify(DuplicateArray));
-        setNotes(DuplicateArray);
+        localStorage.setItem('allNotes', JSON.stringify(arr));
+        let newArr = notes.map((curr) => {
+            if(id === curr.id) {
+                if(curr.favorite === true) {
+                    curr.favorite = false;
+                }
+                else {
+                    curr.favorite = true;
+                }
+            }
+            return curr;
+        })
+        setFinalNotes(newArr);
     }
 
     //todo -> Handle Delete Note =>
     const deleteThisNote = (id) => {
-        DuplicateArray = notes.filter((curr) => {
+        let arr = notes.filter((curr) => {
             return (id !== curr.id);
         })
-        localStorage.setItem("allNotes", JSON.stringify(DuplicateArray));
-        setNotes(DuplicateArray);
+        setFinalNotes(arr);
+        setNotes(arr);
+
+        //* Getting all notes from local Storage 
+        let getAllNotes = localStorage.getItem("allNotes");
+        if(getAllNotes !== null)
+        getAllNotes = JSON.parse(getAllNotes);
+        else 
+        getAllNotes = [];
+        let newArr = getAllNotes.filter((curr) => {
+            return (id !== curr.id);
+        })
+        localStorage.setItem("allNotes", JSON.stringify(newArr));
     }
 
     const openUpdateDialog = () => {
@@ -137,6 +159,9 @@ export const Notes = (props) => {
                     currTitValue={currTitValue}
                     currDesValue={currDesValue}
                     currPriValue={currPriValue}
+
+                    finalNotes={finalNotes}
+                    setFinalNotes={setFinalNotes}
                 />
             }
         </>

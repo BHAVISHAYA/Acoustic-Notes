@@ -1,4 +1,29 @@
-.buttons button {
+.buttons .col-lg-3, .col-sm-6 {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.buttons button i, button .filterIcon {
+    margin-left: 5px;
+    transition: transform 0.3s;
+    -webkit-transition: transform 0.3s;
+    -moz-transition: transform 0.3s;
+    -ms-transition: transform 0.3s;
+    -o-transition: transform 0.3s;
+}
+
+.buttons button:hover i, button:hover .filterIcon {
+    transform: translateY(-3.5rem);
+    -webkit-transform: translateY(-3.5rem);
+    -moz-transform: translateY(-3.5rem);
+    -ms-transform: translateY(-3.5rem);
+    -o-transform: translateY(-3.5rem);
+    border-top: 4px solid var(--color_3);
+    border-left: 0 solid var(--color_3);
+    border-bottom: 0px solid var(--color_3);
+    border-right: 4px solid var(--color_3);
+}
+
+.buttons button, select {
     position: relative;
     color: var(--color_3);
     background-color: var(--color_4);
@@ -13,6 +38,15 @@
     -moz-border-radius: 1rem;
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
+}
+
+.buttons select {
+    text-align: center;
+}
+
+option {
+    font-weight: 700;
+    text-align: start;
 }
 
 .buttons i, .buttons .filterIcon {

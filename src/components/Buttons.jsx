@@ -5,6 +5,7 @@ import ViewListIcon from '@mui/icons-material/ViewList';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { InputDialog } from './InputDialog';
 import { Notes } from './Notes';
+import { Filter } from './Filter';
 
 export const Buttons = () => {
 
@@ -12,6 +13,24 @@ export const Buttons = () => {
     const [showDialog, setShowDialog] = useState(false);
     const [gridView, setGridView] = useState(true);
     const [random, setRandom] = useState(true);
+    const [showFilter, setShowFilter] = useState(false);
+
+    //* Getting all notes from local Storage 
+    let getAllNotes = localStorage.getItem("allNotes");
+    if(getAllNotes !== null)
+    getAllNotes = JSON.parse(getAllNotes);
+    else 
+    getAllNotes = [];
+
+    const [finalNotes, setFinalNotes] = useState(getAllNotes);
+
+    const openFilterBox = () => {
+        setShowFilter(true);
+    }
+
+    const closeFilterBox = () => {
+        setShowFilter(false);
+    }
 
     useEffect(() => {}, [random]);
 
@@ -28,21 +47,17 @@ export const Buttons = () => {
 
     const openDialog = () => {
         setShowDialog(true);
+        setRandom(!random);
     }
     const closeDialog = () => {
         setShowDialog(false);
+        setRandom(!random);
     }
 
 
     const sortAccToPriority = () => {
-        //* Getting original note Array from local storage 
-        let getAllNotes = localStorage.getItem("allNotes");
-        if(getAllNotes !== null)
-        getAllNotes = JSON.parse(getAllNotes);
-        else 
-        getAllNotes = [];
-        getAllNotes = [...getAllNotes].sort((a, b) => a.priority - b.priority);
-        localStorage.setItem("allNotes", JSON.stringify(getAllNotes));
+        let newArr = [...finalNotes].sort((a, b) => a.priority - b.priority);
+        setFinalNotes(newArr);
         setRandom(!random);
     }
      
@@ -63,7 +78,7 @@ export const Buttons = () => {
                         </button>
                     </div>
                     <div className="col-lg-3 col-sm-6 my-2">
-                        <button>
+                        <button onClick={openFilterBox}>
                             Filter
                             <FilterListIcon className='filterIcon' style={{fontSize : "2.3rem", padding : "0.3rem"}} />
                         </button>
@@ -80,9 +95,19 @@ export const Buttons = () => {
                 closeDialog={closeDialog} 
                 random={random} 
                 setRandom={setRandom}  
+
+                finalNotes={finalNotes}
+                setFinalNotes={setFinalNotes}
             /> 
             }
-            <Notes gridView={gridView} />
+            {
+                showFilter && 
+                <Filter
+                    closeFilterBox={closeFilterBox} 
+                    setFinalNotes={setFinalNotes}
+                />
+            }
+            <Notes gridView={gridView} finalNotes={finalNotes} setFinalNotes={setFinalNotes} />
         </>     
     )
 }

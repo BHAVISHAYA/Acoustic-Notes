@@ -5,7 +5,7 @@ import { AddNewUpdatedCategory } from './AddNewUpdatedCategory';
 export const UpdateNote = (props) => {
     
     //* De-structuring the props 
-    const { closeUpdateDialog, cateArr, setCateArr, passId, currCateValue, currTitValue, currDesValue, currPriValue } = props;
+    const { closeUpdateDialog, cateArr, setCateArr, passId, currCateValue, currTitValue, currDesValue, currPriValue, finalNotes, setFinalNotes } = props;
 
     //* Use State 
     const [show, setShow] = useState(false);
@@ -70,6 +70,16 @@ export const UpdateNote = (props) => {
                 return currNote;
             })
             localStorage.setItem("allNotes", JSON.stringify(dupArr));
+            let arr = finalNotes.map((currNote) => {
+                if(currNote.id === passId) {
+                    currNote.category = cateValue;
+                    currNote.title = titValue;
+                    currNote.description = desValue;
+                    currNote.priority = priValue;
+                }
+                return currNote;
+            }) 
+            setFinalNotes(arr);
             closeUpdateDialog();
         }
     }
