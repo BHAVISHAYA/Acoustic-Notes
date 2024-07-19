@@ -132,7 +132,7 @@ export const Notes = (props) => {
                                     <h2 className='py-3'> <span>Priority : </span> {currEle.priority} </h2>
                                     
                                     {/* READ Button */}
-                                    <button>READ</button>
+                                    {/* <button>READ</button> */}
                                     
                                     {/* UPDATE Button */}
                                     <button onClick={() => {updateThisNote(currEle.id)}}>UPDATE</button>
